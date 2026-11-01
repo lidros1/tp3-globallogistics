@@ -1,0 +1,29 @@
+services:
+  api:
+    build: ./api
+    expose:
+      - "3000"
+    environment:
+      - PORT=3000
+    deploy:
+      replicas: 3
+    networks:
+      - globallogistics-net
+    restart: unless-stopped
+
+  load-balancer:
+    image: nginx:alpine
+    container_name: globallogistics-lb
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    networks:
+      - globallogistics-net
+    restart: unless-stopped
+
+networks:
+  globallogistics-net:
+    driver: bridge
