@@ -1,6 +1,6 @@
 # TP N° 3: Despliegue de Arquitectura Cloud-Native - GlobalLogistics S.A.
  
-**Alumnos:** Lisandro Exequiel Müller, Marcos Rojas y Elio Corvalán
+Integrantes: Lisandro Müller, Marcos Rojas y Elio Corvalán
 
 ## Arquitectura Desplegada
 - **Balanceador de Carga (1 instancia):** NGINX (`nginx:alpine`) en el puerto `80` con Health Checks pasivos (`max_fails=3 fail_timeout=10s`) y failover automático (`proxy_next_upstream`).
